@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    // ✅ SOLUTION 1 : Avec async/await (RECOMMANDÉ)
+    async function fetchCharacters() {
+        const reponsePage = await fetch(`https://rickandmortyapi.com/api/character/?page=2`);
+        const dataPage = await reponsePage.json();
+        
+        console.log(dataPage);
+        console.log(dataPage.results); // Les personnages
+    }
+    
+    // Appeler la fonction
+    fetchCharacters();
+
+
+    // ✅ SOLUTION 2 : Avec .then() (ancienne méthode)
+    
+
+</script> 
+</body>
+</html>
