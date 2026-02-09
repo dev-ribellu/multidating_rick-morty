@@ -1,0 +1,603 @@
+/* ===== CHARTE GRAPHIQUE TINDER ===== */
+/* Style général */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Proxima Nova', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    margin: 0;
+    padding: 15px;
+    background: linear-gradient(135deg, #fef9f5 0%, #ffffff 100%);
+    color: #424242;
+    min-height: 100vh;
+}
+
+h1 {
+    color: #424242;
+    font-size: 28px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 8px;
+    background: linear-gradient(135deg, #fd5564, #fe8a7d, #ff6b6b);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+h2 {
+    color: #424242;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+p {
+    text-align: center;
+    color: #7c7c7c;
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+/* Layout principal */
+.main-container {
+    display: flex;
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    align-items: flex-start;
+}
+
+/* ===== SECTION PRÉFÉRENCES ===== */
+.preferences-section {
+    flex: 0 0 340px;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 2px 16px rgba(253, 85, 100, 0.08);
+    height: fit-content;
+    position: sticky;
+    top: 15px;
+    overflow: hidden;
+}
+
+.preferences-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    background: linear-gradient(135deg, #fd5564 0%, #fe8a7d 50%, #ff6b6b 100%);
+    color: white;
+}
+
+.preferences-header h2 {
+    margin: 0;
+    color: white;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.toggle-btn {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 6px 10px;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.toggle-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.1);
+}
+
+#preferencesForm {
+    padding: 16px;
+    margin: 0;
+    max-height: 2000px;
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), padding 0.4s ease;
+}
+
+#preferencesForm.collapsed {
+    max-height: 0;
+    padding: 0 16px;
+}
+
+/* ===== SECTION RÉSULTATS ===== */
+.result-section {
+    flex: 1;
+    min-width: 0;
+}
+
+.character-card {
+    background: white;
+    padding: 0;
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(253, 85, 100, 0.12);
+    text-align: center;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
+    position: relative;
+}
+
+.character-card.swipe-left {
+    animation: swipeLeftAnim 0.3s ease-out forwards;
+}
+
+.character-card.swipe-right {
+    animation: swipeRightAnim 0.3s ease-out forwards;
+}
+
+@keyframes swipeLeftAnim {
+    0% {
+        transform: translateX(0) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(-150%) rotate(-20deg);
+        opacity: 0;
+    }
+}
+
+@keyframes swipeRightAnim {
+    0% {
+        transform: translateX(0) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(150%) rotate(20deg);
+        opacity: 0;
+    }
+}
+
+.character-card:not(.swipe-left):not(.swipe-right):hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 32px rgba(253, 85, 100, 0.2);
+}
+
+.character-card h2 {
+    margin: 16px 0 12px;
+    color: #424242;
+    font-size: 26px;
+    font-weight: 700;
+    padding: 0 20px;
+}
+
+.character-card img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    max-height: 300px;
+    object-fit: contain;
+    border-radius: 0;
+    background-color: #f5f5f5;
+}
+
+.character-info {
+    text-align: left;
+    padding: 16px 24px;
+    background: #fafafa;
+}
+
+.character-info p {
+    margin: 8px 0;
+    font-size: 14px;
+    color: #424242;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.character-info strong {
+    color: #fd5564;
+    font-weight: 600;
+    min-width: 70px;
+}
+
+.no-result {
+    text-align: center;
+    color: #999;
+    padding: 60px 30px;
+    background-color: white;
+    border-radius: 16px;
+    font-size: 18px;
+}
+
+/* ===== FORMULAIRE ===== */
+label {
+    display: block;
+    margin-top: 12px;
+    margin-bottom: 6px;
+    font-weight: 600;
+    color: #424242;
+    font-size: 14px;
+}
+
+label:first-of-type {
+    margin-top: 0;
+}
+
+/* List box personnalisées */
+.list-box {
+    border: 1px solid #e8e8e8;
+    border-radius: 12px;
+    padding: 6px;
+    background-color: #ffffff;
+    max-height: 120px;
+    overflow-y: auto;
+}
+
+.list-box.scrollable {
+    max-height: 140px;
+}
+
+/* Scrollbar personnalisée */
+.list-box::-webkit-scrollbar {
+    width: 6px;
+}
+
+.list-box::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+.list-box::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #fd5564, #fe8a7d);
+    border-radius: 10px;
+}
+
+.list-box::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, #fe8a7d, #fd5564);
+}
+
+.checkbox-item {
+    display: flex;
+    align-items: center;
+    padding: 8px 10px;
+    margin: 3px 0;
+    background-color: #fafafa;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-weight: normal;
+    border: 2px solid transparent;
+}
+
+.checkbox-item:hover {
+    background: linear-gradient(135deg, rgba(253, 85, 100, 0.08), rgba(254, 138, 125, 0.08));
+    border-color: rgba(253, 85, 100, 0.2);
+    transform: translateX(4px);
+}
+
+.checkbox-item input[type="checkbox"],
+.checkbox-item input[type="radio"] {
+    margin-right: 10px;
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    accent-color: #fd5564;
+}
+
+.checkbox-item span {
+    font-size: 14px;
+    color: #424242;
+    font-weight: 500;
+}
+
+.checkbox-item input[type="checkbox"]:checked + span,
+.checkbox-item input[type="radio"]:checked + span {
+    font-weight: 700;
+    color: #fd5564;
+}
+
+.checkbox-item:has(input:checked) {
+    background: linear-gradient(135deg, rgba(253, 85, 100, 0.12), rgba(254, 138, 125, 0.12));
+    border-color: #fd5564;
+}
+
+/* Bouton Submit */
+input[type="submit"] {
+    margin-top: 16px;
+    padding: 12px 24px;
+    background: linear-gradient(135deg, #fd5564 0%, #fe8a7d 50%, #ff6b6b 100%);
+    color: white;
+    border: none;
+    border-radius: 24px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 700;
+    width: 100%;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 16px rgba(253, 85, 100, 0.3);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+input[type="submit"]:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 24px rgba(253, 85, 100, 0.4);
+}
+
+input[type="submit"]:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 12px rgba(253, 85, 100, 0.3);
+}
+
+/* ===== BOUTON FAVORIS ===== */
+.favorites-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 12px 24px;
+    background: linear-gradient(135deg, #fd5564, #fe8a7d);
+    color: white;
+    border: none;
+    border-radius: 28px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 700;
+    box-shadow: 0 4px 16px rgba(253, 85, 100, 0.3);
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
+
+.favorites-toggle:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 24px rgba(253, 85, 100, 0.4);
+}
+
+/* ===== PANNEAU LATÉRAL DES FAVORIS ===== */
+.favorites-sidebar {
+    position: fixed;
+    top: 0;
+    right: -420px;
+    width: 420px;
+    height: 100%;
+    background-color: white;
+    box-shadow: -4px 0 24px rgba(253, 85, 100, 0.15);
+    transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1001;
+    overflow-y: auto;
+}
+
+.favorites-sidebar.open {
+    right: 0;
+}
+
+.sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px;
+    background: linear-gradient(135deg, #fd5564 0%, #fe8a7d 50%, #ff6b6b 100%);
+    color: white;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.sidebar-header h2 {
+    margin: 0;
+    color: white;
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.close-btn {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    font-size: 28px;
+    cursor: pointer;
+    padding: 0;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.close-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: rotate(90deg);
+}
+
+.favorites-list {
+    padding: 20px;
+}
+
+.no-favorites {
+    text-align: center;
+    color: #999;
+    padding: 60px 20px;
+    font-size: 16px;
+}
+
+/* Carte de favori */
+.favorite-card {
+    display: flex;
+    gap: 16px;
+    padding: 16px;
+    margin-bottom: 16px;
+    background: linear-gradient(135deg, #fafafa, #ffffff);
+    border-radius: 12px;
+    border: 1px solid #f0f0f0;
+    transition: all 0.3s ease;
+}
+
+.favorite-card:hover {
+    border-color: #fd5564;
+    box-shadow: 0 4px 16px rgba(253, 85, 100, 0.1);
+    transform: translateX(-4px);
+}
+
+.favorite-card img {
+    width: 90px;
+    height: 90px;
+    border-radius: 12px;
+    object-fit: cover;
+}
+
+.favorite-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.favorite-info h3 {
+    margin: 0 0 6px 0;
+    font-size: 17px;
+    font-weight: 700;
+    color: #424242;
+}
+
+.favorite-info p {
+    margin: 0 0 12px 0;
+    font-size: 14px;
+    color: #7c7c7c;
+}
+
+/* ===== BOUTONS ===== */
+.swipe-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    padding: 24px;
+    background: white;
+}
+
+.swipe-btn {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: none;
+    font-size: 28px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+.dislike-btn {
+    background: linear-gradient(135deg, #ff4458, #fd5564);
+    color: white;
+}
+
+.dislike-btn:hover {
+    transform: scale(1.15);
+    box-shadow: 0 6px 24px rgba(255, 68, 88, 0.4);
+}
+
+.dislike-btn:active {
+    transform: scale(0.95);
+}
+
+.like-btn {
+    background: linear-gradient(135deg, #00d68f, #00b377);
+    color: white;
+}
+
+.like-btn:hover {
+    transform: scale(1.15);
+    box-shadow: 0 6px 24px rgba(0, 214, 143, 0.4);
+}
+
+.like-btn:active {
+    transform: scale(0.95);
+}
+
+.favorite-btn {
+    margin: 16px 24px;
+    padding: 12px 24px;
+    background: linear-gradient(135deg, #fd5564, #fe8a7d);
+    color: white;
+    border: none;
+    border-radius: 24px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 700;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 16px rgba(253, 85, 100, 0.3);
+    width: calc(100% - 48px);
+}
+
+.favorite-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 24px rgba(253, 85, 100, 0.4);
+}
+
+.favorite-btn:active {
+    transform: translateY(0);
+}
+
+.remove-btn {
+    padding: 8px 16px;
+    background: linear-gradient(135deg, #ff4458, #fd5564);
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.remove-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(255, 68, 88, 0.3);
+}
+
+/* ===== MEDIA QUERY MOBILE ===== */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+    
+    h1 {
+        font-size: 28px;
+    }
+    
+    .main-container {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .preferences-section {
+        flex: 1;
+        position: relative;
+        top: 0;
+        width: 100%;
+    }
+    
+    .character-card img {
+        width: 100%;
+        height: auto;
+    }
+    
+    .favorites-sidebar {
+        width: 100%;
+        right: -100%;
+    }
+    
+    .favorites-toggle {
+        top: 10px;
+        right: 10px;
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+}

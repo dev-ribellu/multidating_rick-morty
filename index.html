@@ -4,42 +4,86 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Multidating</title>
+    <link rel="stylesheet" href="style/index.css">
 </head>
 <body>
+    <button id="toggleFavorites" class="favorites-toggle">❤️ Favoris</button>
+    
+    <div id="favoritesSidebar" class="favorites-sidebar">
+        <div class="sidebar-header">
+            <h2>Mes Favoris</h2>
+            <button id="closeSidebar" class="close-btn">✕</button>
+        </div>
+        <div id="favoritesList" class="favorites-list">
+            <!-- Les favoris seront affichés ici -->
+        </div>
+    </div>
+    
     <h1>Welcome to Multidating</h1>
     <p>Your go-to platform for exploring multiple dating options!</p>
 
-    <h2>Preferences</h2>
-    <form>
+    <div class="main-container">
+        <div class="preferences-section">
+            <div class="preferences-header">
+                <h2>Preferences</h2>
+                <button type="button" id="togglePreferences" class="toggle-btn">▼</button>
+            </div>
+            <form id="preferencesForm">
         
-        
-        <label for="status">Status</label>
-        <select id="status" name="status" multiple>
-            <option value="alive">vivant</option>
-            <option value="dead">mort</option>
-            <option value="unknown">inconnu</option>
-        </select>
+        <label>Status</label>
+        <div class="list-box" id="status">
+            <label class="checkbox-item">
+                <input type="radio" name="status" value="alive">
+                <span>Vivant</span>
+            </label>
+            <label class="checkbox-item">
+                <input type="radio" name="status" value="dead">
+                <span>Mort</span>
+            </label>
+            <label class="checkbox-item">
+                <input type="radio" name="status" value="unknown">
+                <span>Inconnu</span>
+            </label>
+        </div>
 
-        <label for="gender">Gender</label>
-        <select id="gender" name="gender" multiple>
-            <option value="male">Homme</option>
-            <option value="female">Femme</option>
-            <option value="genderless">Sans genre</option>
-            <option value="unknown">Inconnu</option>
-        </select>
+        <label>Gender</label>
+        <div class="list-box" id="gender">
+            <label class="checkbox-item">
+                <input type="radio" name="gender" value="male">
+                <span>Homme</span>
+            </label>
+            <label class="checkbox-item">
+                <input type="radio" name="gender" value="female">
+                <span>Femme</span>
+            </label>
+            <label class="checkbox-item">
+                <input type="radio" name="gender" value="genderless">
+                <span>Sans genre</span>
+            </label>
+            <label class="checkbox-item">
+                <input type="radio" name="gender" value="unknown">
+                <span>Inconnu</span>
+            </label>
+        </div>
 
-        <label for="species">Species</label>
-        <select id="species" name="species" multiple>
+        <label>Species</label>
+        <div class="list-box scrollable" id="species">
             <!-- Les options seront ajoutées dynamiquement -->
-        </select>
+        </div>
 
-        <label for="location">Location</label>
-        <select id="location" name="location" multiple>
+        <label>Location</label>
+        <div class="list-box scrollable" id="location">
             <!-- Les options seront ajoutées dynamiquement -->
-        </select>
+        </div>
 
         <input type="submit" value="Find Matches">
-    </form>
+            </form>
+        </div>
+
+        <div id="result" class="result-section">
+            <!-- Les résultats seront affichés ici -->
+        </div>
+    </div>
 
     <script src="script/preferences.js"></script>
 </body>
